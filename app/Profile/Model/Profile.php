@@ -8,7 +8,7 @@ class Profile extends Model
 {
     protected $table = 'profiles';
 
-    protected $fillable = ['user_id', 'bio', 'rate', 'skills', 'postcode'];
+    protected $fillable = ['user_id', 'name', 'bio', 'rate', 'skills', 'postcode'];
 
     public function user()
     {

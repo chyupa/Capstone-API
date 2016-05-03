@@ -19,6 +19,10 @@ Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
 
     Route::post('user', ['uses' => '\App\User\Controller\UserController@createUser']);
 
+    Route::post('login', ['uses' => '\App\User\Controller\UserController@login']);
+
+    Route::get('logout', ['uses' => '\App\User\Controller\UserController@logout']);
+
     Route::post('profile', ['uses' => '\App\Profile\Controller\ProfileController@createProfile']);
     Route::post('update/{profileId}', ['uses' => 'ProfileController@updateProfile']);
 

@@ -18,7 +18,7 @@ class UserRepository extends Repository
         $user = $this->model->create($userData);
         if ($user) {
             if ($user->profile()->create($profileData)) {
-                return true;
+                return $user;
             }
         }
         return false;
