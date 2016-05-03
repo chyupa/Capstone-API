@@ -17,7 +17,7 @@
 
 Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
 
-    Route::post('user', ['uses' => 'User@createUser']);
+    Route::post('user', ['uses' => '\App\User\Controller\UserController@createUser']);
 
     Route::post('profile', ['uses' => '\App\Profile\Controller\ProfileController@createProfile']);
     Route::post('update/{profileId}', ['uses' => 'ProfileController@updateProfile']);
