@@ -14,4 +14,9 @@ class Profile extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function postcode()
+    {
+        return $this->hasOne('App\Postcode\Model\Postcode');
+    }
 }

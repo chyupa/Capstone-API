@@ -23,7 +23,17 @@ Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
 
     Route::get('logout', ['uses' => '\App\User\Controller\UserController@logout']);
 
-    Route::post('profile', ['uses' => '\App\Profile\Controller\ProfileController@createProfile']);
+    Route::group(['prefix' => 'profile'], function () {
+        Route::post('bio/{userId}', ['uses' => '\App\Profile\Controller\ProfileController@updateBio']);
+
+        Route::post('rate/{userId}', ['uses' => '\App\Profile\Controller\ProfileController@updateRate']);
+
+        Route::post('skills/{userId}', ['uses' => '\App\Profile\Controller\ProfileController@updateSkills']);
+
+        Route::post('postcode/{userId}', ['uses' => '\App\Profile\Controller\ProfileController@updatePostcode']);
+    });
+
+
     Route::post('update/{profileId}', ['uses' => 'ProfileController@updateProfile']);
 
     Route::get('profiles', function () {

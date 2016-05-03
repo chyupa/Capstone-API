@@ -14,8 +14,10 @@ class ProfileRepository extends Repository
         parent::__construct($profile);
     }
 
-    public function createProfile(Request $request)
+    public function getProfileById($userId)
     {
-        dd($request->all());
+        return $this->model
+            ->where('user_id', $userId)
+            ->first();
     }
 }
