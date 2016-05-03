@@ -4,7 +4,6 @@ namespace App\User\Repository;
 
 use App\Repository;
 use App\User\Model\User;
-use Illuminate\Http\Request;
 
 class UserRepository extends Repository
 {
@@ -14,8 +13,14 @@ class UserRepository extends Repository
         parent::__construct($profile);
     }
 
-    public function createUser(Request $request)
+    public function createProfile($userData, $profileData)
     {
-        dd($request->all());
+        $user = $this->model->create($userData);
+        if ($user) {
+            if ($user->profile()->create($profileData)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
