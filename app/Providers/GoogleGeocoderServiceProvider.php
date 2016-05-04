@@ -16,7 +16,7 @@ class GoogleGeocoderServiceProvider extends ServiceProvider
     public function register()
     {
         App::bind('GoogleGeocoder', function () {
-            return new \App\GoogleGeocoder\GoogleGeocoder;
+            return new \App\Capstone\GoogleGeocoder\GoogleGeocoder;
         });
     }
 }

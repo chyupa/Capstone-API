@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Profile\Model;
+namespace App\Capstone\Profile\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,6 +17,6 @@ class Profile extends Model
 
     public function postcode()
     {
-        return $this->hasOne('App\Postcode\Model\Postcode');
+        return $this->hasOne('App\Capstone\Postcode\Model\Postcode');
     }
 }

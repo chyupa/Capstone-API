@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User\Model\User::class,
+            'model' => App\Capstone\User\Model\User::class,
         ],
 
         // 'users' => [

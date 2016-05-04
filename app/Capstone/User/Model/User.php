@@ -1,6 +1,6 @@
 <?php
 
-namespace App\User\Model;
+namespace App\Capstone\User\Model;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -26,6 +26,6 @@ class User extends Authenticatable
 
     public function profile()
     {
-        return $this->hasOne('App\Profile\Model\Profile');
+        return $this->hasOne('App\Capstone\Profile\Model\Profile');
     }
 }

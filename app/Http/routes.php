@@ -17,20 +17,20 @@
 
 Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
 
-    Route::post('user', ['uses' => '\App\User\Controller\UserController@createUser']);
+    Route::post('user', ['uses' => '\App\Capstone\User\Controller\UserController@createUser']);
 
-    Route::post('login', ['uses' => '\App\User\Controller\UserController@login']);
+    Route::post('login', ['uses' => '\App\Capstone\User\Controller\UserController@login']);
 
-    Route::get('logout', ['uses' => '\App\User\Controller\UserController@logout']);
+    Route::get('logout', ['uses' => '\App\Capstone\User\Controller\UserController@logout']);
 
     Route::group(['prefix' => 'profile'], function () {
-        Route::post('bio/{userId}', ['uses' => '\App\Profile\Controller\ProfileController@updateBio']);
+        Route::post('bio/{userId}', ['uses' => '\App\Capstone\Profile\Controller\ProfileController@updateBio']);
 
-        Route::post('rate/{userId}', ['uses' => '\App\Profile\Controller\ProfileController@updateRate']);
+        Route::post('rate/{userId}', ['uses' => '\App\Capstone\Profile\Controller\ProfileController@updateRate']);
 
-        Route::post('skills/{userId}', ['uses' => '\App\Profile\Controller\ProfileController@updateSkills']);
+        Route::post('skills/{userId}', ['uses' => '\App\Capstone\Profile\Controller\ProfileController@updateSkills']);
 
-        Route::post('postcode/{userId}', ['uses' => '\App\Profile\Controller\ProfileController@updatePostcode']);
+        Route::post('postcode/{userId}', ['uses' => '\App\Capstone\Profile\Controller\ProfileController@updatePostcode']);
     });
 
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\User\Repository;
+namespace App\Capstone\User\Repository;
 
-use App\Repository;
-use App\User\Model\User;
+use App\Capstone\Repository;
+use App\Capstone\User\Model\User;
 
 class UserRepository extends Repository
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\User\Controller;
+namespace App\Capstone\User\Controller;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\LoginRequest;
-use App\User\Repository\UserRepository;
+use App\Capstone\User\Repository\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 

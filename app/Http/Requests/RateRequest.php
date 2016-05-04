@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Profile\Model\Profile;
+use App\Capstone\Profile\Model\Profile;
 
 class RateRequest extends Request
 {

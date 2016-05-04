@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Profile\Controller;
+namespace App\Capstone\Profile\Controller;
 
 use App\Facades\Geocoder;
 use App\Http\Controllers\Controller;
@@ -8,8 +8,7 @@ use App\Http\Requests\BioRequest;
 use App\Http\Requests\PostcodeRequest;
 use App\Http\Requests\RateRequest;
 use App\Http\Requests\SkillsRequest;
-use App\Profile\Repository\ProfileRepository;
-use App\Providers\GoogleGeocoderServiceProvider;
+use App\Capstone\Profile\Repository\ProfileRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -96,10 +95,13 @@ class ProfileController extends Controller
         }
 
         $geolocation = Geocoder::geocode($request->postcode);
-
-        $profile->update([
-            "postcode" => Str::upper($request->postcode)
-        ]);
+        if ($geolocation) {
+            $profile->update([
+              "postcode" => Str::upper($request->postcode)
+            ]);
+        } else {
+            return responseJson(false, "Could not retrieve coordinates");
+        }
 
         $profile->postcode()->create($geolocation);
 

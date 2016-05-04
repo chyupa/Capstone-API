@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Profile\Repository;
+namespace App\Capstone\Profile\Repository;
 
-use App\Profile\Model\Profile;
-use App\Repository;
-use Illuminate\Http\Request;
+use App\Capstone\Profile\Model\Profile;
+use App\Capstone\Repository;
 
 class ProfileRepository extends Repository
 {

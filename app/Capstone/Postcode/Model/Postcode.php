@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Postcode\Model;
+namespace App\Capstone\Postcode\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +12,6 @@ class Postcode extends Model
 
     public function profile()
     {
-        return $this->belongsTo('App\Profile\Model\Profile');
+        return $this->belongsTo('App\Capstone\Profile\Model\Profile');
     }
 }

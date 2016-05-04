@@ -202,7 +202,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Geocoder' => App\GoogleGeocoder\GoogleGeocoder::class,
+        'Geocoder' => App\Capstone\GoogleGeocoder\GoogleGeocoder::class,
 
     ],
 

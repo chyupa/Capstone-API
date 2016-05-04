@@ -1,6 +1,6 @@
 <?php
 
-namespace App\GoogleGeocoder;
+namespace App\Capstone\GoogleGeocoder;
 
 class GoogleGeocoder
 {
@@ -17,13 +17,12 @@ class GoogleGeocoder
 
     protected function buildQuery($postcode)
     {
-        $this->requestUri = sprintf("%s?address=%s&country=%s&sensor=false&key=%s", $this->apiUrl, $postcode, "gb", $this->apiKey);
+        $this->requestUri = sprintf("%s?address=%s&country=%s&sensor=false&key=%s", $this->apiUrl, urlencode($postcode), "gb", $this->apiKey);
     }
 
     public function geocode($postcode)
     {
         $this->buildQuery($postcode);
-
         try {
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $this->requestUri);
