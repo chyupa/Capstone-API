@@ -92,7 +92,7 @@ class ProfileController extends Controller
         $geolocation = Geocoder::geocode($request->postcode);
         if ($geolocation) {
             $profile->update([
-              "postcode" => Str::upper($request->postcode)
+              "postcode" => Str::upper(str_replace(" ", "", $request->postcode))
             ]);
         } else {
             return responseJson(false, "Could not retrieve coordinates");
@@ -108,6 +108,14 @@ class ProfileController extends Controller
         return response()->json([
             "success" => true,
             "data" => $this->profileRepo->getAllProfiles()
+        ]);
+    }
+
+    public function getProfilesByPostcode(Request $request)
+    {
+        return response()->json([
+          "success" => true,
+          "data" => $this->profileRepo->getProfilesByPostcode($request->postcode)
         ]);
     }
 }

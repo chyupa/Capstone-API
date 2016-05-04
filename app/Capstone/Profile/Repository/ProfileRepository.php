@@ -26,4 +26,12 @@ class ProfileRepository extends Repository
           ->with('postcode')
           ->paginate(1);
     }
+
+    public function getProfilesByPostcode($postcode)
+    {
+        return $this->model
+          ->with('postcode')
+          ->where('postcode', 'like', '%'.$postcode.'%')
+          ->paginate(1);
+    }
 }

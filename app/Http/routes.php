@@ -36,4 +36,8 @@ Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
     Route::group(['prefix' => 'profiles'], function() {
         Route::get('/', ['uses' => '\App\Capstone\Profile\Controller\ProfileController@getAllProfiles']);
     });
+
+    Route::group(['prefix' => 'postcode'], function() {
+        Route::get('search/{postcode}', ['uses' => '\App\Capstone\Profile\Controller\ProfileController@getProfilesByPostcode']);
+    });
 });
