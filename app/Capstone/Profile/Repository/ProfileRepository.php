@@ -19,4 +19,11 @@ class ProfileRepository extends Repository
             ->where('user_id', $userId)
             ->first();
     }
+
+    public function getAllProfiles()
+    {
+        return $this->model
+          ->with('postcode')
+          ->paginate(1);
+    }
 }

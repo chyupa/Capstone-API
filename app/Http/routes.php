@@ -33,12 +33,7 @@ Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
         Route::post('postcode/{userId}', ['uses' => '\App\Capstone\Profile\Controller\ProfileController@updatePostcode']);
     });
 
-
-    Route::post('update/{profileId}', ['uses' => 'ProfileController@updateProfile']);
-
-    Route::get('profiles', function () {
-        return "asd";
+    Route::group(['prefix' => 'profiles'], function() {
+        Route::get('/', ['uses' => '\App\Capstone\Profile\Controller\ProfileController@getAllProfiles']);
     });
-
-
 });

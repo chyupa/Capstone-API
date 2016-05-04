@@ -21,11 +21,6 @@ class ProfileController extends Controller
         $this->profileRepo = $profileRepository;
     }
 
-    public function createProfile(Request $request)
-    {
-        dd($request);
-    }
-
     public function updateBio(BioRequest $request)
     {
         $userId = auth()->id();
@@ -106,5 +101,13 @@ class ProfileController extends Controller
         $profile->postcode()->create($geolocation);
 
         return responseJson(true, "Postcode was updated");
+    }
+
+    public function getAllProfiles()
+    {
+        return response()->json([
+            "success" => true,
+            "data" => $this->profileRepo->getAllProfiles()
+        ]);
     }
 }
