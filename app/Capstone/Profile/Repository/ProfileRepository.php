@@ -24,7 +24,7 @@ class ProfileRepository extends Repository
     {
         return $this->model
           ->with('postcode')
-          ->paginate(1);
+          ->paginate(5);
     }
 
     public function getProfilesByPostcode($postcode)

@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\LoginRequest;
 use App\Capstone\User\Repository\UserRepository;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -18,8 +20,18 @@ class UserController extends Controller
         $this->userRepo = $userRepository;
     }
 
-    public function createUser(CreateUserRequest $request)
+    public function createUser(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+          "email" => "required|email|unique:users",
+          "password" => "required|min:6",
+          "name" => "required"
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+
         $userData = [
             "email" => $request->email,
             "password" => Hash::make($request->password)
@@ -37,13 +49,13 @@ class UserController extends Controller
             ])
             ) {
                 return response()->json([
-                    "success" => true,
-                    "msg" => "User created and logged in"
+                  "success" => true,
+                  "id" => $user->id,
                 ]);
             } else {
                 return response()->json([
-                    "success" => true,
-                    "msg" => "User created but not logged in"
+                  "success" => true,
+                  "id" => $user->id,
                 ]);
             }
         } else {
@@ -71,7 +83,7 @@ class UserController extends Controller
 
     public function logout()
     {
-        dd(auth()->user());
+//        dd(auth()->user());
         Auth::logout();
 
         return response()->json([

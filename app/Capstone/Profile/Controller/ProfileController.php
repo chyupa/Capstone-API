@@ -21,9 +21,9 @@ class ProfileController extends Controller
         $this->profileRepo = $profileRepository;
     }
 
-    public function updateBio(BioRequest $request)
+    public function updateBio(Request $request)
     {
-        $userId = auth()->id();
+        $userId = $request->userId;
 
         $profile = $this->profileRepo
             ->getProfileById($userId);
@@ -44,7 +44,7 @@ class ProfileController extends Controller
 
     public function updateRate(RateRequest $request)
     {
-        $userId = auth()->id();
+        $userId = $request->userId;
 
         $profile = $this->profileRepo
             ->getProfileById($userId);
@@ -60,9 +60,9 @@ class ProfileController extends Controller
         return responseJson(true, "Rate was updated");
     }
 
-    public function updateSkills(SkillsRequest $request)
+    public function updateSkills(Request $request)
     {
-        $userId = auth()->id();
+        $userId = $request->userId;
 
         $profile = $this->profileRepo
             ->getProfileById($userId);
@@ -78,9 +78,9 @@ class ProfileController extends Controller
         return responseJson(true, "Skills were updated");
     }
 
-    public function updatePostcode(PostcodeRequest $request)
+    public function updatePostcode(Request $request)
     {
-        $userId = auth()->id();
+        $userId = $request->userId;
 
         $profile = $this->profileRepo
             ->getProfileById($userId);
@@ -105,17 +105,15 @@ class ProfileController extends Controller
 
     public function getAllProfiles()
     {
-        return response()->json([
-            "success" => true,
-            "data" => $this->profileRepo->getAllProfiles()
-        ]);
+        return response()->json(
+            $this->profileRepo->getAllProfiles()
+        );
     }
 
     public function getProfilesByPostcode(Request $request)
     {
-        return response()->json([
-          "success" => true,
-          "data" => $this->profileRepo->getProfilesByPostcode($request->postcode)
-        ]);
+        return response()->json(
+          $this->profileRepo->getProfilesByPostcode($request->postcode)
+        );
     }
 }
