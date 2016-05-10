@@ -31,6 +31,8 @@ Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
         Route::post('skills/{userId}', ['uses' => '\App\Capstone\Profile\Controller\ProfileController@updateSkills']);
 
         Route::post('postcode/{userId}', ['uses' => '\App\Capstone\Profile\Controller\ProfileController@updatePostcode']);
+
+        Route::get('{userId}', ['uses' => '\App\Capstone\Profile\Controller\ProfileController@getProfileByUserId']);
     });
 
     Route::group(['prefix' => 'profiles'], function() {

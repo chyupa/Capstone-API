@@ -116,4 +116,11 @@ class ProfileController extends Controller
           $this->profileRepo->getProfilesByPostcode($request->postcode)
         );
     }
+
+    public function getProfileByUserId(Request $request)
+    {
+        return response()->json(
+          $this->profileRepo->getProfileInfo($request->userId)
+        );
+    }
 }

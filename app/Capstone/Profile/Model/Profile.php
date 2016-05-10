@@ -15,7 +15,7 @@ class Profile extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function postcode()
+    public function postcodeInfo()
     {
         return $this->hasOne('App\Capstone\Postcode\Model\Postcode');
     }

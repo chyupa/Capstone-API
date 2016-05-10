@@ -66,12 +66,17 @@ class UserController extends Controller
         }
     }
 
-    public function login(LoginRequest $request)
+    public function login(Request $request)
     {
         if (Auth::attempt($request->all())) {
+            $user = $this->userRepo
+              ->getUserWithInfo(auth()->id());
+
             return response()->json([
                 "success" => true,
-                "msg" => "User logged in"
+                "msg" => "User logged in",
+                "userId" => auth()->id(),
+                "user" => $user
             ]);
         } else {
             return response()->json([

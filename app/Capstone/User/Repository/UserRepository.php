@@ -23,4 +23,12 @@ class UserRepository extends Repository
         }
         return false;
     }
+
+    public function getUserWithInfo($id)
+    {
+        return $this->model
+          ->with('profile.postcodeInfo')
+          ->where('id', $id)
+          ->first();
+    }
 }

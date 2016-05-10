@@ -23,15 +23,24 @@ class ProfileRepository extends Repository
     public function getAllProfiles()
     {
         return $this->model
-          ->with('postcode')
+          ->with('postcodeInfo')
           ->paginate(5);
     }
 
     public function getProfilesByPostcode($postcode)
     {
         return $this->model
-          ->with('postcode')
+          ->with('postcodeInfo')
           ->where('postcode', 'like', '%'.$postcode.'%')
           ->paginate(1);
+    }
+
+    public function getProfileInfo($userId)
+    {
+        return $this->model
+          ->with('user')
+          ->with('postcodeInfo')
+          ->where('user_id', $userId)
+          ->first();
     }
 }
