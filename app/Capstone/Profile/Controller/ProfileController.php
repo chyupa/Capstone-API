@@ -98,7 +98,7 @@ class ProfileController extends Controller
             return responseJson(false, "Could not retrieve coordinates");
         }
 
-        $profile->postcode()->create($geolocation);
+        $profile->postcodeInfo()->create($geolocation);
 
         return responseJson(true, "Postcode was updated");
     }
