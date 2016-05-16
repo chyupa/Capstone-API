@@ -24,6 +24,7 @@ class ProfileRepository extends Repository
     {
         return $this->model
           ->with('postcodeInfo')
+          ->orderBy('created_at', 'desc')
           ->paginate(10);
     }
 

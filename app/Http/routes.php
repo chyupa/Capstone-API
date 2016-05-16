@@ -24,6 +24,9 @@ Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
     Route::get('logout', ['uses' => '\App\Capstone\User\Controller\UserController@logout']);
 
     Route::group(['prefix' => 'profile'], function () {
+
+        Route::post('image/{userId}', ['uses' => '\App\Capstone\Profile\Controller\ProfileController@updateImage']);
+
         Route::post('bio/{userId}', ['uses' => '\App\Capstone\Profile\Controller\ProfileController@updateBio']);
 
         Route::post('rate/{userId}', ['uses' => '\App\Capstone\Profile\Controller\ProfileController@updateRate']);

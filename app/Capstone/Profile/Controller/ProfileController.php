@@ -4,12 +4,10 @@ namespace App\Capstone\Profile\Controller;
 
 use App\Facades\Geocoder;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\BioRequest;
-use App\Http\Requests\PostcodeRequest;
 use App\Http\Requests\RateRequest;
-use App\Http\Requests\SkillsRequest;
 use App\Capstone\Profile\Repository\ProfileRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProfileController extends Controller
@@ -19,6 +17,40 @@ class ProfileController extends Controller
     public function __construct(ProfileRepository $profileRepository)
     {
         $this->profileRepo = $profileRepository;
+    }
+
+    public function updateImage(Request $request) {
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+        } else {
+            return responseJson(false, "Image not found");
+        }
+
+        if ($file->isValid()) {
+
+            $directory = public_path("images/$request->userId");
+
+            $filename = Str::random(12) . "." . $file->getClientOriginalExtension();
+
+            $file->move($directory, $filename);
+
+            $profile = $this->profileRepo
+              ->getProfileById($request->userId);
+
+            if (!$profile) {
+                return responseJson(false, "Profile not found");
+            }
+
+            $profile->update([
+                "profile_image" => asset("images/$request->userId/$filename")
+            ]);
+
+            return response()->json([
+              "success" => true,
+              "msg" => "Profile Image was updated"
+            ]);
+        }
     }
 
     public function updateBio(Request $request)
@@ -42,7 +74,7 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function updateRate(RateRequest $request)
+    public function updateRate(Request $request)
     {
         $userId = $request->userId;
 
