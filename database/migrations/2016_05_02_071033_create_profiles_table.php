@@ -16,6 +16,7 @@ class CreateProfilesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('name');
+            $table->string('profile_image');
             $table->text('bio');
             $table->integer('rate', false, true);
             $table->string('skills');
